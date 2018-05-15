@@ -57,18 +57,20 @@ def simpletry(size):
     delta = end - start
     return delta
 
+def simplepure(size):
+    i = 1
+    start = datetime.datetime.now()
+    while i < size:
+        i +=1
+    end = datetime.datetime.now()
+    delta = end - start
+    return delta
+
+
 def midleif(size):
     i = 0
     start = datetime.datetime.now()
     while i < size:
-        """if i == int(size / 4):
-            print(i)
-        elif i == int(size / 2):
-            print(i)
-        elif i == size - int(size / 4):
-            print(i)
-        else:
-            pass"""
         if type(i) == int:
             i = i / 1
         else:
@@ -171,12 +173,27 @@ def test(size):
         resmatrix[j].append(midleif(i))
         resmatrix[j].append(midletry(i))
         resmatrix[j].append(midlepure(i))
+        resmatrix[j].append(simpleif(i))
+        resmatrix[j].append(simpletry(i))
+        resmatrix[j].append(simplepure(i))
         resmatrix[j].append(fibif(i))
         resmatrix[j].append(fibtry(i))
         resmatrix[j].append(fibpure(i))
         i = i * 10
         j += 1
-    print("Output: if, try, pure; Midle: if, try, pure; Fib: if, try, pure:")
+    print("Output: if, try, pure:)"
     for index, row in enumerate(resmatrix):
         n = 100*10**index
-        print(f"{n} : {row[0].seconds} | {row[1].seconds} | {row[2].seconds} | {row[3].seconds} | {row[4].seconds} | {row[5].seconds}| {row[6].seconds} | {row[7].seconds} | {row[8].seconds}")
+        print(f"{n} : {row[0].seconds}.{row[0].microseconds} | {row[1].seconds}.{row[1].microseconds} | {row[2].seconds}.{row[0].microseconds}")
+    print("Simple: if, try, pure:")
+    for index, row in enumerate(resmatrix):
+        n = 100*10**index
+        print(f"{n} : {row[3].seconds}.{row[3].microseconds} | {row[4].seconds}.{row[4].microseconds} | {row[5].seconds}.{row[5].microseconds}")
+    print("Midle: if, try, pure:")
+    for index, row in enumerate(resmatrix):
+        n = 100*10**index
+        print(f"{n} : {row[6].seconds}.{row[6].microseconds} | {row[7].seconds}.{row[7].microseconds} | {row[8].seconds}.{row[8].microseconds}")
+    print("Fib: if, try, pure:")
+    for index, row in enumerate(resmatrix):
+        n = 100*10**index
+        print(f"{n} : {row[9].seconds}.{row[9].microseconds} | {row[10].seconds}.{row[10].microseconds} | {row[11].seconds}.{row[11].microseconds}")
